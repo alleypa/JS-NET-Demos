@@ -1,0 +1,52 @@
+﻿
+<h2>Your Cart</h2>
+
+<div ng-controller="checkoutController as checkoutCtrl">
+
+    <div class="alert alert-warning" ng-show="checkoutCtrl.cartData.length == 0">
+        There are no products in your shopping cart
+        <a href="#/products" class="alert-link">Click here to return to the catalogue</a>
+    </div>
+
+    <section ng-hide="checkoutCtrl.cartData.length == 0">
+
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th class="text-center">Quantity</th>
+                    <th>Item</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in checkoutCtrl.cartData">
+                    <td class="text-center"><span ng-bind="item.count"></span></td>
+                    <td class="text-left"><span ng-bind="item.name"></span></td>
+                    <td class="text-right"><span ng-bind="item.price | currency:'£'"></span></td>
+                    <td class="text-right"><span ng-bind="(item.price * item.count) | currency:'£'"></span></td>
+                    <td>
+                        <button ng-click="checkoutCtrl.remove(item.objectId)"
+                                class="btn btn-sm btn-warning">
+                            Remove
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td class="text-right"><span ng-bind="checkoutCtrl.total() | currency:'£'"></span></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-center">
+            <a class="btn btn-primary" href="#/products">Continue shopping</a>
+            <a class="btn btn-primary" href="#/placeorder">Place order now</a>
+        </div>
+
+    </section>
+</div>
+
+

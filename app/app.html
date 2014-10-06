@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="sportsStore" ng-strict-di>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SportsStore</title>
+    <link href="../css/bootstrap-theme.css" rel="stylesheet" />
+	<link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+
+<body ng-controller="sportsStoreController as sportStoreCtrl" ng-cloak>
+
+	<div class="navbar navbar-inverse navbar-static-top ">
+		<a href="#" class="navbar-brand">SPORTS STORE</a>
+		<cart-summary/>
+	</div>
+
+	<div class="alert alert-danger" ng-show="sportStoreCtrl.data.error">
+		Error (<span ng-bind="sportStoreCtrl.data.error.status"></span>). The product data was not loaded.
+		<a href="/app/app.html" class="alert-link">Click here to try again</a>
+	</div>
+	
+    <ng-view />	
+
+    <script src="../scripts/angular.js"></script>
+    <script src="../scripts/angular-resource.js"></script>
+    <script src="../scripts/angular-route.js"></script>
+	<script src="app.module.js"></script>
+	<script src="app.config.js"></script>
+	<script src="app.constants.js"></script>
+	<script src="components/cart.module.js"></script> 
+	<script src="services/dataService.js"></script>
+	<script src="services/logService.js"></script>
+	<script src="services/cartService.js"></script>       	
+	<script src="filters/filter.module.js"></script>
+	<script src="filters/filters.js"></script>
+    <script src="controllers/sportsStore.js"></script>
+	<script src="controllers/productListControllers.js"></script>
+    <script src="controllers/checkoutController.js"></script>
+	<script src="directives/cartSummaryDirective.js"></script>
+</body>
+</html>

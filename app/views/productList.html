@@ -1,0 +1,41 @@
+﻿
+<div class="panel panel-default row" ng-controller="productListController as prodCtrl"
+     ng-hide="sportStoreCtrl.data.error">
+
+    <!--product navigation-->
+    <div class="col-xs-3">
+        <a ng-click="prodCtrl.selectCategory()" class="btn btn-block btn-default btn-lg">Home</a>
+
+        <a ng-repeat="item in sportStoreCtrl.data.products | orderBy:'category' | unique:'category'"
+           ng-click="prodCtrl.selectCategory(item)"
+           class="btn btn-block btn-default btn-lg"
+           ng-class="prodCtrl.getCategoryClass(item)">
+            <span ng-bind="item"></span>
+        </a>
+    </div>
+
+    <!--product list-->
+    <div class="col-xs-8">
+        <div class="well" ng-repeat="item in sportStoreCtrl.data.products
+                 | filter:prodCtrl.categoryFilter | range:prodCtrl.selectedPage:prodCtrl.pageSize">
+            <h3>
+                <strong ng-bind="item.name"></strong>
+                <span class="pull-right label label-primary"
+                      ng-bind="item.price | currency:'£'"></span>
+            </h3>
+            <button ng-click="prodCtrl.addProductToCart(item)" class="pull-right btn btn-success">
+                Add to cart
+            </button>
+            <span class="lead" ng-bind="item.description"></span>
+        </div>
+
+        <section class="pull-right btn-group">
+            <a ng-repeat="page in sportStoreCtrl.data.products
+               | filter:prodCtrl.categoryFilter | pageCount:prodCtrl.pageSize"
+               ng-click="prodCtrl.selectPage($index + 1)"
+               class="btn btn-default" ng-class="prodCtrl.getPageClass($index + 1)">
+                <span ng-bind="$index + 1"></span>
+            </a>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿
+<style>
+    .navbar-right {
+        /*float: right !important;*/
+        margin-right:5px; /*done so that it sits within the parent div*/
+    }
+
+    .navbar-text {
+        margin-right: 10px;
+    }
+</style>
+
+<div class="navbar-right">
+    <div class="navbar-text">
+        <b>Your cart:</b>
+        <span ng-bind="cartCtrl.itemCount()"></span> item(s), 
+        <span ng-bind="cartCtrl.total() | currency:'£'"></span>
+    </div>
+
+    <a href="#/checkout" class="btn btn-default navbar-btn">Checkout</a>
+</div>
+
